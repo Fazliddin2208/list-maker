@@ -96,9 +96,6 @@ export default function Categories() {
         setItems(JSON.parse(storedItems));
     }
 
-    console.log(items);
-    
-
     const editItem = () => {
         if (newItemTitle.trim() === '') {
             return;
