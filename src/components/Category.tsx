@@ -40,7 +40,7 @@ export default function Category() {
         }
 
         items?.map(elem => {
-            if (elem.id == item.id) {
+            if (elem.id === item.id) {
                 if (elem.subItems.length > 0) {
                     const newItem = {
                         sub_id: elem?.subItems[elem.subItems.length - 1]?.sub_id + 1,

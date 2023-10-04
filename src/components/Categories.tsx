@@ -17,8 +17,6 @@ interface Item {
 
 export default function Categories() {
 
-    const array: any = localStorage.getItem('list')
-
     const [items, setItems] = useState<any[]>([{id:1, name: 'Item 1', subItems:[]}]);
     
     useEffect(() => {
@@ -50,19 +48,28 @@ export default function Categories() {
         if (newItemTitle.trim() === '') {
             return;
         }
-
-        console.log(typeof(items[items.length-1].id));
         
+        if(items?.length > 0){
+            const newItem = {
+                id: items[items.length-1]?.id + 1,
+                name: newItemTitle,
+                subItems: []
+            };
+            setItems([...items, newItem]);
+            setNewItemTitle('');
+            toggleAddClose();
+        }else{
+            const newItem = {
+                id: 0,
+                name: newItemTitle,
+                subItems: []
+            };
+            setItems([...items, newItem]);
+            setNewItemTitle('');
+            toggleAddClose();
+        }
 
-        const newItem = {
-            id: items[items.length-1].id + 1,
-            name: newItemTitle,
-            subItems: []
-        };
 
-        setItems([...items, newItem]);
-        setNewItemTitle('');
-        toggleAddClose();
     };
 
     const [editOpen, setEditOpen] = useState(false)
